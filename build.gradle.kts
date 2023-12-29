@@ -6,6 +6,7 @@ plugins {
 	kotlin("jvm") version "1.9.21"
 	kotlin("plugin.spring") version "1.9.21"
 	kotlin("plugin.noarg") version "1.8.22"
+	kotlin("kapt") version "1.8.22"
 }
 
 group = "com.teamsparta"
@@ -38,6 +39,7 @@ noArg {
 	annotation("jakarta.persistence.Embeddable")
 }
 
+val queryDslVersion = "5.0.0"
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
@@ -45,6 +47,9 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("com.querydsl:querydsl-jpa:$queryDslVersion:jakarta")
+	kapt("com.querydsl:querydsl-apt:$queryDslVersion:jakarta")
+
 //	implementation("com.h2database:h2")
 
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")

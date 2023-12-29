@@ -7,9 +7,11 @@ import com.teamsparta.todo.domain.cards.model.Card
 import com.teamsparta.todo.domain.cards.repository.CardRepository
 import com.teamsparta.todo.domain.exception.ModelNotFoundException
 import com.teamsparta.todo.domain.cards.model.toResponse
+import org.springframework.data.domain.Sort
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.time.LocalDateTime
 
 @Service
 class CardServiceImpl(
@@ -17,7 +19,7 @@ class CardServiceImpl(
 ): CardService
     {
     override fun getAllCardList(): List<CardResponse> {
-        //TODO: DB에서 모든 할 일 Card 목록 조회하여, CardResponse 목록으로 변환 후 반환
+        //TODO: DB에서 모든 할 일 Card 목록 조회하여, CardResponse 내림차순 목록으로 변환 후 반환
         return cardRepository.findAll().map {it.toResponse()}
     }
 
@@ -37,8 +39,7 @@ class CardServiceImpl(
             Card(
                 id = request.id,
                 title = request.title,
-                content = request.content,
-                date = request.date
+                content = request.content
             )
         ).toResponse()
     }
@@ -48,12 +49,11 @@ class CardServiceImpl(
         //TODO: cardId에 해당하는 Card가 없다면 throw ModelNotFoundException
         //TODO: DB에서 cardId에 해당하는 Card를 가져와서 request 기반으로 업데이트 후 DB에 저장, 결과를 CardResponse로 변환 후 반환
         val card = cardRepository.findByIdOrNull(cardId)?: throw ModelNotFoundException("Card", cardId)
-        val (id, title, content, date) = request
+        val (id, title, content) = request
 
         card.id = id
         card.title = title
-        card.content = content
-        card.date = date.toString()
+        card.content = content.toString()
 
         return cardRepository.save(card).toResponse()
     }
