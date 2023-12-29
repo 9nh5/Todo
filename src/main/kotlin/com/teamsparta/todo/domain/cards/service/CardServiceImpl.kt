@@ -39,7 +39,8 @@ class CardServiceImpl(
             Card(
                 id = request.id,
                 title = request.title,
-                content = request.content
+                content = request.content,
+                date = request.date
             )
         ).toResponse()
     }
@@ -49,11 +50,12 @@ class CardServiceImpl(
         //TODO: cardId에 해당하는 Card가 없다면 throw ModelNotFoundException
         //TODO: DB에서 cardId에 해당하는 Card를 가져와서 request 기반으로 업데이트 후 DB에 저장, 결과를 CardResponse로 변환 후 반환
         val card = cardRepository.findByIdOrNull(cardId)?: throw ModelNotFoundException("Card", cardId)
-        val (id, title, content) = request
+        val (id, title, content, date) = request
 
         card.id = id
         card.title = title
         card.content = content.toString()
+        card.date = LocalDateTime.now()
 
         return cardRepository.save(card).toResponse()
     }

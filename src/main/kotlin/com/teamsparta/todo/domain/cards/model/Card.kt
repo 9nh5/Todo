@@ -14,12 +14,12 @@ class Card(
     @Column(name = "content")
     var content: String,
 
+    @Column(name = "date")
+    var date: LocalDateTime,
 
     @Id
     @Column(name = "id")
-    var id: String,
-
-
+    var id: String
 ) {
 }
 
@@ -28,5 +28,6 @@ fun Card.toResponse(): CardResponse {
         id = id,
         title = title,
         content = content,
+        date = date
     )
 }
