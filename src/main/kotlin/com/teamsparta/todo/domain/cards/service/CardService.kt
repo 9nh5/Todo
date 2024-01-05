@@ -8,11 +8,11 @@ interface CardService {
 
     fun getAllCardList(): List<CardResponse>
 
-    fun getCardById(cardId: String): CardResponse
+    fun getCardById(cardId: Long): CardResponse
 
     fun createCard(request: CreateCardRequest): CardResponse
 
-    fun upadateCard(cardId: String, request: UpdateCardRequest): CardResponse
+    fun upadateCard(cardId: Long, request: UpdateCardRequest): CardResponse
 
-    fun deleteCard(cardId: String)
+    fun deleteCard(cardId: Long)
 }

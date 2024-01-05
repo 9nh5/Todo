@@ -4,8 +4,7 @@ import java.time.LocalDateTime
 
 
 data class CreateCardRequest (
-    val id: String,
-    val title: String,
-    var date: LocalDateTime,
-    val content: String
+    val title: String? = null,
+    val userName: String? = null,
+    val content: String? = null
 )

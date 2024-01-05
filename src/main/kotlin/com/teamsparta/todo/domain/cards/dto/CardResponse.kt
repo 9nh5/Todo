@@ -1,11 +1,13 @@
 package com.teamsparta.todo.domain.cards.dto
 
-import java.time.LocalDateTime
+
+import java.time.ZonedDateTime
 
 
 data class CardResponse (
-    val id: String,
-    val title: String,
-    var date: LocalDateTime,
-    val content: String
+    val id: Long,
+    val title: String? = null,
+    val createdAt: ZonedDateTime? = null,
+    val userName: String? = null,
+    val content: String? = null
 )

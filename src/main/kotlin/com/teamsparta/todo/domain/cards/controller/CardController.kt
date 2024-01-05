@@ -32,7 +32,7 @@ class CardController (
     }
 
     @GetMapping("/{cardId}")
-    fun getCardId(@PathVariable cardId: String): ResponseEntity<CardResponse> {
+    fun getCardId(@PathVariable cardId: Long): ResponseEntity<CardResponse> {
         return ResponseEntity
             .status(HttpStatus.OK)
             .body(cardService.getCardById(cardId))
@@ -46,14 +46,14 @@ class CardController (
     }
 
     @PutMapping("/{cardId}")
-    fun upadateCard(@PathVariable cardId: String, @RequestBody upadateCardRequest: UpdateCardRequest): ResponseEntity<CardResponse> {
+    fun upadateCard(@PathVariable cardId: Long, @RequestBody upadateCardRequest: UpdateCardRequest): ResponseEntity<CardResponse> {
         return ResponseEntity
             .status(HttpStatus.OK)
             .body(cardService.upadateCard(cardId, upadateCardRequest))
     }
 
     @DeleteMapping("/{cardId}")
-    fun deleteCard(@PathVariable cardId: String): ResponseEntity<Unit> {
+    fun deleteCard(@PathVariable cardId: Long): ResponseEntity<Unit> {
         cardService.deleteCard(cardId)
         return ResponseEntity
             .status(HttpStatus.NO_CONTENT)
