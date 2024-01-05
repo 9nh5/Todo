@@ -3,7 +3,6 @@
 API명세...?
 )
 <br>
-ERD  x
+ERD  사진x
 )
-<br>
-날짜 정렬 x
+
